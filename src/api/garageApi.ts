@@ -1,5 +1,6 @@
 import { apiSlice } from './apiSlice';
-import { CARS_PER_PAGE } from '../constants';
+import { CARS_PER_PAGE, RANDOM_CARS_BATCH } from '../constants';
+import { randomCar } from '../utils/randomCar';
 import type { Car, CarDraft, Paginated } from '../types';
 
 const readTotalCount = (headers: Headers): number =>
@@ -24,6 +25,17 @@ export const garageApi = apiSlice.injectEndpoints({
       invalidatesTags: ['Car'],
     }),
 
+    generateCars: builder.mutation<void, void>({
+      async queryFn(_arg, _api, _extra, baseQuery) {
+        const requests = Array.from({ length: RANDOM_CARS_BATCH }, () =>
+          baseQuery({ url: '/garage', method: 'POST', body: randomCar() }),
+        );
+        await Promise.all(requests);
+        return { data: undefined };
+      },
+      invalidatesTags: ['Car'],
+    }),
+
     updateCar: builder.mutation<Car, { id: number; body: CarDraft }>({
       query: ({ id, body }) => ({ url: `/garage/${id}`, method: 'PUT', body }),
       invalidatesTags: ['Car'],
@@ -39,6 +51,7 @@ export const garageApi = apiSlice.injectEndpoints({
 export const {
   useGetCarsQuery,
   useCreateCarMutation,
+  useGenerateCarsMutation,
   useUpdateCarMutation,
   useDeleteCarMutation,
 } = garageApi;
