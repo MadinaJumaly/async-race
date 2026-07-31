@@ -24,5 +24,6 @@ module.exports = {
     'no-magic-numbers': ['warn', { ignore: [-1, 0, 1, 2], ignoreArrayIndexes: true }],
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
+    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
   },
 };
