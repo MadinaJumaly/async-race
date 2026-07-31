@@ -154,10 +154,8 @@ code {
 }
 
 .car-row__name {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
+  order: -1;
+  min-width: 120px;
   white-space: nowrap;
+  padding-right: 8px;
 }

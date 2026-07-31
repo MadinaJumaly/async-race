@@ -15,12 +15,13 @@ function CarRow({ car }: CarRowProps) {
   const [deleteCar] = useDeleteCarMutation();
   const [deleteWinner] = useDeleteWinnerMutation();
   const {
-    carRef, mode, duration, frozenLeft, start, stop,
+    mode, duration, progress, start, stop,
   } = useCarEngine(car.id);
 
+  const isFrozen = mode === 'broken' && progress !== null;
   const carStyle = {
     transitionDuration: `${duration}ms`,
-    ...(frozenLeft !== null && { left: `${frozenLeft}px` }),
+    ...(isFrozen && { left: `calc(${progress} * (100% - 60px))` }),
   };
 
   const handleSelect = () => {
@@ -43,13 +44,7 @@ function CarRow({ car }: CarRowProps) {
         <button type="button" onClick={start} disabled={mode !== 'idle'}>A</button>
         <button type="button" onClick={stop} disabled={mode === 'idle'}>B</button>
       </div>
-      <CarTrack
-        carRef={carRef}
-        mode={mode}
-        style={carStyle}
-        color={car.color}
-        name={car.name}
-      />
+      <CarTrack mode={mode} style={carStyle} color={car.color} name={car.name} />
     </li>
   );
 }
