@@ -17,6 +17,8 @@ export function useRace(cars: Car[]) {
       const winner = finishers.reduce((best, r) => (r.time < best.time ? r : best));
       dispatch(declareWinner(winner.id));
     }
+
+    dispatch(setRaceStatus('idle'));
   };
 
   const reset = async (): Promise<void> => {

@@ -12,6 +12,8 @@ function RaceControls({ cars }: RaceControlsProps) {
   const winnerId = useAppSelector((state) => state.race.winnerId);
 
   const isRacing = status === 'racing';
+  const hasResult = winnerId !== null;
+  const raceOver = isRacing || hasResult;
   const winner = cars.find((car) => car.id === winnerId);
   const winnerState = useAppSelector((state) =>
     winnerId !== null ? state.race.cars[winnerId] : undefined,
@@ -19,10 +21,10 @@ function RaceControls({ cars }: RaceControlsProps) {
 
   return (
     <div className="race-controls">
-      <button type="button" onClick={startRace} disabled={isRacing}>
+      <button type="button" onClick={startRace} disabled={raceOver}>
         Race
       </button>
-      <button type="button" onClick={reset} disabled={!isRacing}>
+      <button type="button" onClick={reset} disabled={!raceOver}>
         Reset
       </button>
       {winner && winnerState && (

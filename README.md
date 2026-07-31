@@ -59,7 +59,7 @@ src/
 - [X] Generate 100 random cars (name = 2 parts, random color) (20)
 - [X] Update / delete buttons per car (10)
 - [X] Pagination, 7 per page (10)
-- [ ] Extra: "No Cars" empty state; go to prev page when last car on page removed (20)
+- [X] Extra: "No Cars" empty state; go to prev page when last car on page removed (20)
 
 ### Winners View (50)
 
@@ -70,14 +70,14 @@ src/
 
 ### Race (170)
 
-- [ ] Start engine animation; stop on 500 (20)
-- [ ] Stop engine animation; car returns to start (20)
-- [ ] Responsive animation down to 500px (30)
-- [ ] Start race for all cars on page (10)
-- [ ] Reset race to start positions (15)
-- [ ] Winner announcement banner with car name (5)
-- [ ] Button states (start disabled while driving; stop disabled at start) (20)
-- [ ] Correct handling of actions during a race (50)
+- [X] Start engine animation; stop on 500 (20)
+- [X] Stop engine animation; car returns to start (20)
+- [X] Responsive animation down to 500px (30)
+- [X] Start race for all cars on page (10)
+- [X] Reset race to start positions (15)
+- [X] Winner announcement banner with car name (5)
+- [X] Button states (start disabled while driving; stop disabled at start) (20)
+- [X] Correct handling of actions during a race (50)
 
 ### Prettier & ESLint (10)
 
