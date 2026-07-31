@@ -109,3 +109,55 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.car-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  direction: ltr;
+  text-align: left;
+}
+
+.car-row__controls,
+.car-row__engine {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.car-row__track {
+  position: relative;
+  flex: 1;
+  height: 60px;
+  border-bottom: 1px solid #444;
+  overflow: hidden;
+}
+
+.car-row__car {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition-timing-function: linear;
+  transition-property: left;
+  will-change: left;
+}
+
+.car-row__car--driving,
+.car-row__car--finished {
+  left: calc(100% - 60px);
+}
+
+.car-row__car--broken {
+  transition: none;
+}
+
+.car-row__name {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+}
