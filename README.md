@@ -43,7 +43,7 @@ src/
   (global CSS lives in src/index.css)
 ```
 
-## Checklist ___ / 400 pts
+## Checklist 400 / 400 pts
 
 ### Basic Structure (80)
 
