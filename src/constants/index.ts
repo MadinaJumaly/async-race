@@ -18,3 +18,8 @@ export const CAR_MODELS = [
 ] as const;
 
 export const DEFAULT_CAR_COLOR = '#ffffff';
+
+export const MS_PER_SECOND = 1000;
+export const TIME_DECIMALS = 100; // round to 2 dp
+
+export const TRACK_END_OFFSET_PX = 60;

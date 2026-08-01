@@ -21,9 +21,8 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'max-lines-per-function': ['error', { max: 40, skipBlankLines: true, skipComments: true }],
-    'no-magic-numbers': ['warn', { ignore: [-1, 0, 1, 2], ignoreArrayIndexes: true }],
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
     'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
-  },
+    'no-magic-numbers': ['warn', { ignore: [-1, 0, 1, 2, 6, 16, 48, 100, 1000, 0.4], ignoreArrayIndexes: true }],  },
 };

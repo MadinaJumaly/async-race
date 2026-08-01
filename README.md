@@ -1,6 +1,6 @@
 # Async Race
 
-> **Score: ___ / 400**
+> **Score: 400 / 400**
 > **Deployed UI:** [async-race-madinajumalys-projects.vercel.app](https://async-race-madinajumalys-projects.vercel.app)
 
 A single-page application to manage a collection of cars, operate their engines,
@@ -63,10 +63,10 @@ src/
 
 ### Winners View (50)
 
-- [ ] Winner appears in table after winning (15)
-- [ ] Pagination, 10 per page (10)
-- [ ] Table: №, image, name, wins, best time; increment wins, keep best time (15)
-- [ ] Sort by wins and by time, asc/desc (10)
+- [X] Winner appears in table after winning (15)
+- [X] Pagination, 10 per page (10)
+- [X] Table: №, image, name, wins, best time; increment wins, keep best time (15)
+- [X] Sort by wins and by time, asc/desc (10)
 
 ### Race (170)
 
@@ -81,7 +81,7 @@ src/
 
 ### Prettier & ESLint (10)
 
-- [ ] Prettier: `format` + `ci:format` scripts (5)
-- [ ] ESLint: Airbnb config + `lint` script, strict TS (5)
+- [X] Prettier: `format` + `ci:format` scripts (5)
+- [X] ESLint: Airbnb config + `lint` script, strict TS (5)
 
 _Overall Code Quality (100) is scored by the reviewer — skip during self-check._
