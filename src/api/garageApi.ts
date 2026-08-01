@@ -45,11 +45,17 @@ export const garageApi = apiSlice.injectEndpoints({
       query: (id) => ({ url: `/garage/${id}`, method: 'DELETE' }),
       invalidatesTags: ['Car', 'Winner'],
     }),
+
+    getCar: builder.query<Car, number>({
+      query: (id) => `/garage/${id}`,
+      providesTags: ['Car'],
+    }),
   }),
 });
 
 export const {
   useGetCarsQuery,
+  useGetCarQuery,
   useCreateCarMutation,
   useGenerateCarsMutation,
   useUpdateCarMutation,
