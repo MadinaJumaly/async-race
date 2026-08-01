@@ -5,7 +5,7 @@ import { setGaragePage } from './garageSlice';
 import { CARS_PER_PAGE } from '../../constants';
 import CreateCarForm from './CreateCarForm';
 import UpdateCarForm from './UpdateCarForm';
-import CarRow from './CarRow';
+import CarList from './CarList';
 import Pagination from '../../components/Pagination';
 import RaceControls from '../race/RaceControls';
 
@@ -36,15 +36,7 @@ function GarageView() {
         {isGenerating ? 'Generating…' : 'Generate Cars'}
       </button>
       <RaceControls cars={cars} />
-      {cars.length === 0 ? (
-        <p className="garage__empty">No cars in the garage.</p>
-      ) : (
-        <ul className="garage__list">
-          {cars.map((car) => (
-            <CarRow key={car.id} car={car} />
-          ))}
-        </ul>
-      )}
+      <CarList cars={cars} />
       <Pagination
         page={page}
         totalCount={total}

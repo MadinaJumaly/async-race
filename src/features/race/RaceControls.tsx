@@ -21,10 +21,10 @@ function RaceControls({ cars }: RaceControlsProps) {
 
   return (
     <div className="race-controls">
-      <button type="button" onClick={startRace} disabled={raceOver}>
+      <button type="button" onClick={startRace}>
         Race
       </button>
-      <button type="button" onClick={reset} disabled={!raceOver}>
+      <button type="button" onClick={reset}>
         Reset
       </button>
       {winner && winnerState && (

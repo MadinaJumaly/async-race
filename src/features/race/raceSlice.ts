@@ -27,12 +27,21 @@ interface RaceState {
   status: 'idle' | 'racing';
   cars: Record<number, CarRaceState>;
   winnerId: number | null;
+  /** Bumped whenever a race starts or is reset; stale async work checks it before dispatching. */
+  generation: number;
 }
 
 const initialState: RaceState = {
   status: 'idle',
   cars: {},
   winnerId: null,
+  generation: 0,
+};
+
+const clearCars = (state: RaceState): void => {
+  Object.keys(state.cars).forEach((key) => {
+    state.cars[Number(key)] = idleCar();
+  });
 };
 
 const raceSlice = createSlice({
@@ -64,12 +73,17 @@ const raceSlice = createSlice({
     declareWinner(state, action: PayloadAction<number>) {
       if (state.winnerId === null) state.winnerId = action.payload;
     },
+    newRace(state) {
+      state.generation += 1;
+      state.status = 'racing';
+      state.winnerId = null;
+      clearCars(state);
+    },
     resetRace(state) {
+      state.generation += 1;
       state.status = 'idle';
       state.winnerId = null;
-      Object.keys(state.cars).forEach((key) => {
-        state.cars[Number(key)] = idleCar();
-      });
+      clearCars(state);
     },
   },
 });
@@ -81,6 +95,7 @@ export const {
   resetCar,
   setRaceStatus,
   declareWinner,
+  newRace,
   resetRace,
 } = raceSlice.actions;
 export default raceSlice.reducer;

@@ -159,3 +159,7 @@ code {
   white-space: nowrap;
   padding-right: 8px;
 }
+
+.car-row__car svg {
+  transform: scaleX(-1);
+}

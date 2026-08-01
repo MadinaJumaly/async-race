@@ -1,6 +1,6 @@
 import { useDeleteCarMutation } from '../../api/garageApi';
 import { useDeleteWinnerMutation } from '../../api/winnersApi';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectCar, clearSelection } from './garageSlice';
 import useCarEngine from './useCarEngine';
 import CarTrack from './CarTrack';
@@ -13,6 +13,7 @@ interface CarRowProps {
 function CarRow({ car }: CarRowProps) {
   const dispatch = useAppDispatch();
   const [deleteCar] = useDeleteCarMutation();
+  const raceStatus = useAppSelector((state) => state.race.status);
   const [deleteWinner] = useDeleteWinnerMutation();
   const {
     mode, duration, progress, start, stop,
@@ -41,8 +42,20 @@ function CarRow({ car }: CarRowProps) {
         <button type="button" onClick={handleRemove}>Remove</button>
       </div>
       <div className="car-row__engine">
-        <button type="button" onClick={start} disabled={mode !== 'idle'}>A</button>
-        <button type="button" onClick={stop} disabled={mode === 'idle'}>B</button>
+        <button
+          type="button"
+          onClick={start}
+          disabled={mode !== 'idle' || raceStatus === 'racing'}
+        >
+          A
+        </button>
+        <button
+          type="button"
+          onClick={stop}
+          disabled={mode === 'idle' && raceStatus !== 'racing'}
+        >
+          B
+        </button>
       </div>
       <CarTrack mode={mode} style={carStyle} color={car.color} name={car.name} />
     </li>

@@ -1,16 +1,24 @@
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppStore } from '../../app/hooks';
 import { startEngine, stopEngine, type RaceResult } from './engineActions';
-import { setRaceStatus, declareWinner, resetRace as resetRaceAction } from './raceSlice';
+import {
+  setRaceStatus, declareWinner, newRace, resetRace as resetRaceAction,
+} from './raceSlice';
 import type { Car } from '../../types';
 
 export function useRace(cars: Car[]) {
   const dispatch = useAppDispatch();
+  const store = useAppStore();
+  const getGeneration = (): number => store.getState().race.generation;
 
   const startRace = async (): Promise<void> => {
-    dispatch(resetRaceAction());
-    dispatch(setRaceStatus('racing'));
+    dispatch(newRace());
+    const generation = getGeneration();
+    const token = { generation, getGeneration };
 
-    const results = await Promise.all(cars.map((car) => startEngine(car.id, dispatch)));
+    const results = await Promise.all(
+      cars.map((car) => startEngine(car.id, dispatch, token)),
+    );
+    if (getGeneration() !== generation) return;
 
     const finishers = results.filter((r): r is RaceResult => r !== null);
     if (finishers.length > 0) {
@@ -22,9 +30,8 @@ export function useRace(cars: Car[]) {
   };
 
   const reset = async (): Promise<void> => {
-    await Promise.all(cars.map((car) => stopEngine(car.id, dispatch)));
     dispatch(resetRaceAction());
-    dispatch(setRaceStatus('idle'));
+    await Promise.all(cars.map((car) => stopEngine(car.id, dispatch)));
   };
 
   return { startRace, reset };
