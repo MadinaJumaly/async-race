@@ -8,12 +8,8 @@ interface RaceControlsProps {
 
 function RaceControls({ cars }: RaceControlsProps) {
   const { startRace, reset } = useRace(cars);
-  const status = useAppSelector((state) => state.race.status);
   const winnerId = useAppSelector((state) => state.race.winnerId);
 
-  const isRacing = status === 'racing';
-  const hasResult = winnerId !== null;
-  const raceOver = isRacing || hasResult;
   const winner = cars.find((car) => car.id === winnerId);
   const winnerState = useAppSelector((state) =>
     winnerId !== null ? state.race.cars[winnerId] : undefined,

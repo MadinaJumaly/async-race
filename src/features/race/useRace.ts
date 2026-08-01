@@ -3,6 +3,7 @@ import { startEngine, stopEngine, type RaceResult } from './engineActions';
 import {
   setRaceStatus, declareWinner, newRace, resetRace as resetRaceAction,
 } from './raceSlice';
+import { saveWinner } from '../winners/saveWinner';
 import type { Car } from '../../types';
 
 export function useRace(cars: Car[]) {
@@ -24,6 +25,7 @@ export function useRace(cars: Car[]) {
     if (finishers.length > 0) {
       const winner = finishers.reduce((best, r) => (r.time < best.time ? r : best));
       dispatch(declareWinner(winner.id));
+      await saveWinner(winner.id, winner.time, dispatch);
     }
 
     dispatch(setRaceStatus('idle'));
