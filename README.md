@@ -15,7 +15,7 @@ This UI needs the mock backend running locally on port 3000:
 git clone https://github.com/mikhama/async-race-api.git
 cd async-race-api
 npm install
-npm start   # -> http://127.0.0.1:3000
+npm start 
 ```
 
 ## Getting started
