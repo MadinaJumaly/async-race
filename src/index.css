@@ -384,3 +384,79 @@ input[type='color']::-moz-color-swatch {
 .car-row__car svg {
   transform: scaleX(-1);
 }
+
+.winners {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0 24px;
+}
+
+.winners__table {
+  width: 100%;
+  max-width: 720px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.winners__table th,
+.winners__table td {
+  padding: 10px 16px;
+  text-align: left;
+}
+
+.winners__table thead th {
+  background: linear-gradient(180deg, #16334a, #0d1424);
+  color: var(--accent);
+  font-family: var(--heading);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--accent-border);
+  text-shadow: var(--glow-cyan);
+}
+
+.winners__sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.winners__sortable:hover {
+  color: var(--accent-2);
+  text-shadow: var(--glow-magenta);
+}
+
+.winners__table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s ease;
+}
+
+.winners__table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.winners__table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.winners__table tbody tr:hover {
+  background: var(--accent-bg);
+}
+
+.winners__table tbody td {
+  color: var(--text-h);
+  vertical-align: middle;
+}
+
+.winners__table tbody td:first-child {
+  color: var(--accent);
+  font-weight: 700;
+}
