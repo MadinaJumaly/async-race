@@ -1,8 +1,6 @@
 import { useAppDispatch, useAppStore } from '../../app/hooks';
 import { startEngine, stopEngine, type RaceResult } from './engineActions';
-import {
-  setRaceStatus, declareWinner, newRace, resetRace as resetRaceAction,
-} from './raceSlice';
+import { setRaceStatus, newRace, resetRace as resetRaceAction } from './raceSlice';
 import { saveWinner } from '../winners/saveWinner';
 import type { Car } from '../../types';
 
@@ -21,11 +19,12 @@ export function useRace(cars: Car[]) {
     );
     if (getGeneration() !== generation) return;
 
-    const finishers = results.filter((r): r is RaceResult => r !== null);
-    if (finishers.length > 0) {
-      const winner = finishers.reduce((best, r) => (r.time < best.time ? r : best));
-      dispatch(declareWinner(winner.id));
-      await saveWinner(winner.id, winner.time, dispatch);
+    const { winnerId } = store.getState().race;
+    if (winnerId !== null) {
+      const winnerResult = results.find((r): r is RaceResult => r?.id === winnerId);
+      if (winnerResult) {
+        await saveWinner(winnerResult.id, winnerResult.time, dispatch);
+      }
     }
 
     dispatch(setRaceStatus('idle'));
