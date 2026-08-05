@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
+
 :root {
   --text: #a6b0c3;
   --text-h: #eef2ff;
@@ -129,6 +131,57 @@ button:disabled {
   cursor: not-allowed;
   opacity: 0.4;
   filter: grayscale(0.4);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header__title {
+  margin: 32px 0;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.header__nav a:hover {
+  color: var(--text-h);
+  border-color: var(--accent-border);
+  box-shadow: var(--glow-cyan);
+}
+
+.header__nav a.active {
+  color: var(--bg);
+  background: linear-gradient(180deg, var(--accent), #0fb8cf);
+  border-color: var(--accent);
+  box-shadow: var(--glow-cyan);
 }
 
 .car-row {
