@@ -1,23 +1,27 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
+  --text: #a6b0c3;
+  --text-h: #eef2ff;
+  --bg: #0a0d16;
+  --bg-raised: #10141f;
+  --border: #232a3d;
+  --code-bg: #10141f;
+  --accent: #22e5ff;
+  --accent-2: #ff2fd0;
+  --accent-bg: rgba(34, 229, 255, 0.1);
+  --accent-border: rgba(34, 229, 255, 0.5);
+  --social-bg: rgba(35, 42, 61, 0.5);
   --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+    rgba(0, 0, 0, 0.5) 0 10px 25px -5px, rgba(0, 0, 0, 0.3) 0 4px 6px -2px;
+  --glow-cyan: 0 0 6px rgba(34, 229, 255, 0.6), 0 0 18px rgba(34, 229, 255, 0.35);
+  --glow-magenta: 0 0 6px rgba(255, 47, 208, 0.6), 0 0 18px rgba(255, 47, 208, 0.35);
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: 'Segoe UI', system-ui, Roboto, sans-serif;
+  --heading: 'Orbitron', 'Segoe UI', system-ui, Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
+  color-scheme: dark;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -30,29 +34,10 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
 #root {
-  width: 1126px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 1600px;
+  padding: 0 32px;
   margin: 0 auto;
   text-align: center;
   border-inline: 1px solid var(--border);
@@ -60,6 +45,10 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(34, 229, 255, 0.08), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 85% 0%, rgba(255, 47, 208, 0.07), transparent 60%),
+    var(--bg);
 }
 
 body {
@@ -69,7 +58,7 @@ body {
 h1,
 h2 {
   font-family: var(--heading);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--text-h);
 }
 
@@ -77,6 +66,8 @@ h1 {
   font-size: 56px;
   letter-spacing: -1.68px;
   margin: 32px 0;
+  text-transform: uppercase;
+  text-shadow: var(--glow-cyan);
   @media (max-width: 1024px) {
     font-size: 36px;
     margin: 20px 0;
@@ -108,6 +99,36 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+button {
+  font: inherit;
+  color: var(--text-h);
+  background: linear-gradient(180deg, #1b2135, #131829);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease,
+    background 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--accent-border);
+  box-shadow: var(--glow-cyan);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+  filter: grayscale(0.4);
 }
 
 .car-row {
