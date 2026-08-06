@@ -29,6 +29,7 @@ interface RaceState {
   winnerId: number | null;
   /** Bumped whenever a race starts or is reset; stale async work checks it before dispatching. */
   generation: number;
+  bannerShownFor: number | null;
 }
 
 const initialState: RaceState = {
@@ -36,6 +37,7 @@ const initialState: RaceState = {
   cars: {},
   winnerId: null,
   generation: 0,
+  bannerShownFor: null,
 };
 
 const clearCars = (state: RaceState): void => {
@@ -73,16 +75,24 @@ const raceSlice = createSlice({
     declareWinner(state, action: PayloadAction<number>) {
       if (state.winnerId === null) state.winnerId = action.payload;
     },
+    clearWinner(state) {
+      state.winnerId = null;
+    },
+    markBannerShown(state, action: PayloadAction<number>) {
+      state.bannerShownFor = action.payload;
+    },
     newRace(state) {
       state.generation += 1;
       state.status = 'racing';
       state.winnerId = null;
+      state.bannerShownFor = null;
       clearCars(state);
     },
     resetRace(state) {
       state.generation += 1;
       state.status = 'idle';
       state.winnerId = null;
+      state.bannerShownFor = null;
       clearCars(state);
     },
   },
@@ -95,6 +105,8 @@ export const {
   resetCar,
   setRaceStatus,
   declareWinner,
+  clearWinner,
+  markBannerShown,
   newRace,
   resetRace,
 } = raceSlice.actions;
