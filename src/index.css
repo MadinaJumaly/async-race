@@ -202,10 +202,21 @@ input[type='color']::-moz-color-swatch {
 }
 
 .garage__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   width: 100%;
   padding: 0;
   margin: 0;
   list-style: none;
+}
+.garage__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
 }
 
 .create-form,
@@ -215,17 +226,12 @@ input[type='color']::-moz-color-swatch {
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  width: 100%;
-  max-width: 520px;
-  padding: 12px 16px;
+  flex: 0 1 auto;
+  padding: 6px 10px;
   background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: 10px;
   box-sizing: border-box;
-}
-
-.garage > button {
-  align-self: center;
 }
 
 .race-controls {
@@ -234,7 +240,7 @@ input[type='color']::-moz-color-swatch {
   justify-content: center;
   flex-wrap: wrap;
   gap: 12px;
-  width: 100%;
+  width: auto;
 }
 
 .header {
@@ -300,6 +306,7 @@ input[type='color']::-moz-color-swatch {
 .car-row__controls,
 .car-row__engine {
   display: flex;
+  flex-direction: column;
   gap: 4px;
   flex-shrink: 0;
 }
@@ -383,6 +390,11 @@ input[type='color']::-moz-color-swatch {
 
 .car-row__car svg {
   transform: scaleX(-1);
+}
+
+.car-row__engine button {
+  padding: 4px 8px;
+  min-width: 32px;
 }
 
 .winners {
