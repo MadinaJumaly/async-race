@@ -30,12 +30,14 @@ function GarageView() {
   return (
     <section className="garage">
       <h2>Garage ({total})</h2>
-      <CreateCarForm />
-      <UpdateCarForm />
-      <button type="button" onClick={() => generateCars()} disabled={isGenerating}>
-        {isGenerating ? 'Generating…' : 'Generate Cars'}
-      </button>
-      <RaceControls cars={cars} />
+      <div className="garage__toolbar">
+        <RaceControls cars={cars} />
+        <CreateCarForm />
+        <UpdateCarForm />
+        <button type="button" onClick={() => generateCars()} disabled={isGenerating}>
+          {isGenerating ? 'Generating…' : 'Generate Cars'}
+        </button>
+      </div>
       <CarList cars={cars} />
       <Pagination
         page={page}
