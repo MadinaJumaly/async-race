@@ -307,7 +307,7 @@ input[type='color']::-moz-color-swatch {
 .car-row__track {
   position: relative;
   flex: 1;
-  min-width: 300px;
+  min-width: 120px;
   height: 60px;
   border-bottom: 1px solid #444;
   overflow: hidden;
