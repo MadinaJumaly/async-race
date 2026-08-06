@@ -22,12 +22,8 @@ function WinnersView() {
       <table className="winners__table">
         <WinnersTableHead sort={sort} order={order} />
         <tbody>
-          {winners.map((winner, i) => (
-            <WinnerRow
-              key={winner.id}
-              winner={winner}
-              index={(currentPage - 1) * WINNERS_PER_PAGE + i + 1}
-            />
+          {winners.map((winner) => (
+            <WinnerRow key={winner.id} winner={winner} />
           ))}
         </tbody>
       </table>

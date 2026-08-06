@@ -4,15 +4,14 @@ import type { Winner } from '../../types';
 
 interface WinnerRowProps {
   winner: Winner;
-  index: number;
 }
 
-function WinnerRow({ winner, index }: WinnerRowProps) {
+function WinnerRow({ winner }: WinnerRowProps) {
   const { data: car } = useGetCarQuery(winner.id);
 
   return (
     <tr>
-      <td>{index}</td>
+      <td>{winner.id}</td>
       <td>{car ? <CarIcon color={car.color} size={40} /> : '—'}</td>
       <td>{car?.name ?? '—'}</td>
       <td>{winner.wins}</td>
